@@ -4,7 +4,7 @@ const postSchema=require('../models/postSchema');
 const apiUtils=require('../utils/apiUtils');
 const upload=require('../middlewares/upload')
 
-const router=express.Router();
+const router = express.Router();
 
 
 router.post('/newpost',verify,upload.single('image'),(req,res)=>{
