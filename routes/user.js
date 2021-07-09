@@ -3,12 +3,12 @@ const express =require( 'express');
 const userSchema=require('../models/userSchema.js');
 const bcrypt =require( 'bcrypt');
 const apiUtils=require('../utils/apiUtils');
+const globalConstant = require('../utils/globalConstant')
 
 const router=express.Router();
 
 router.post('/register',(req,res)=>{
-    const saltRounds=parseInt(process.env.saltRounds);
-    bcrypt.hash(req.body.password,saltRounds)
+    bcrypt.hash(req.body.password,globalConstant.SALT_ROUNDS)
     .then((hash)=>{
         req.body.password=hash;
         return userSchema.create(req.body)
